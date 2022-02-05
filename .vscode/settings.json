@@ -1,0 +1,24 @@
+{
+  "files.autoSave": "afterDelay",
+  "editor.fontSize": 16,
+  "explorer.confirmDelete": false,
+  "window.zoomLevel": 0,
+  "editor.formatOnSave": true,
+  "vetur.format.defaultFormatter.html": "js-beautify-html",
+  "workbench.statusBar.visible": true,
+  "workbench.activityBar.visible": true,
+  "window.menuBarVisibility": "default",
+  "workbench.sideBar.location": "left",
+  "cmake.configureOnOpen": true,
+  "explorer.confirmDragAndDrop": false,
+  "java.jdt.ls.vmargs": "-noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication",
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-1.8",
+      "path": "C:/Program Files/Java/jdk-9",
+      "default": true
+    },
+  ],
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
+}
