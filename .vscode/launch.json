@@ -2,6 +2,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Launch GreetingServer",
+      "request": "launch",
+      "mainClass": "java_base.GreetingServer",
+      "projectName": "Java_121732a4"
+    },
+    {
+      "type": "java",
       "name": "Launch Java Program",
       "request": "launch",
       "mainClass": ""
@@ -10,13 +17,13 @@
       "type": "java",
       "name": "Launch Hello",
       "request": "launch",
-      "mainClass": "java_base.Hello",
+      "mainClass": "java_base.Hello"
     },
     {
       "type": "java",
       "name": "Launch IOTest",
       "request": "launch",
-      "mainClass": "java_base.IOTest",
-    },
+      "mainClass": "java_base.IOTest"
+    }
   ]
 }
