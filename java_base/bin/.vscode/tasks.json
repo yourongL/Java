@@ -12,7 +12,7 @@
 			"label": "java: exportjar:Java",
 			"group": {
 				"kind": "build",
-				"isDefault": true 
+				"isDefault": true
 			}
 		}
 	]

@@ -1,33 +1,22 @@
 {
   "configurations": [
-  
+    {
+      "type": "java",
+      "name": "Launch Java Program",
+      "request": "launch",
+      "mainClass": ""
+    },
     {
       "type": "java",
       "name": "Launch Hello",
       "request": "launch",
       "mainClass": "java_base.Hello",
-      "projectName": "Java_121732a4"
     },
     {
       "type": "java",
       "name": "Launch IOTest",
       "request": "launch",
       "mainClass": "java_base.IOTest",
-      "projectName": "Java_121732a4"
     },
-    {
-      "type": "java",
-      "name": "Launch Hello",
-      "request": "launch",
-      "mainClass": "java_base.Hello",
-      "projectName": "Java_test"
-    },
-    {
-      "type": "java",
-      "name": "CodeLens (Launch) - first",
-      "request": "launch",
-      "console": "externalTerminal",
-      "mainClass": "first"
-    }
   ]
 }
