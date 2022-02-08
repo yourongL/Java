@@ -5,3 +5,5 @@
     - setting.json 项目的个性化配置文件       比较常用(配置环境变量 classpath)
     - tasks.json 项目的Buid(编译)配置文件     也是项目中用到的多
 + java_base 是本测试项目的包之一 存放了一些测试类
+    - bin 是classpath
+    - java 源文件

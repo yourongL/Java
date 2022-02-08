@@ -2,6 +2,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Launch ThreadTest",
+      "request": "launch",
+      "mainClass": "java_base.ThreadTest",
+      "projectName": "Java_121732a4"
+    },
+    {
+      "type": "java",
       "name": "Launch GreetingServer",
       "request": "launch",
       "mainClass": "java_base.GreetingServer",
