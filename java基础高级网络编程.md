@@ -366,7 +366,7 @@ writeObject(Object x) 和 readObject()
 
 
 
-```
+```java
 //网络编程
 java.net 包中提供了两种常见的网络协议的支持：
 	TCP：TCP（英语：Transmission Control Protocol，传输控制协议） 是一种面向连接的、可靠的、基于字节流的传输层通信协议，TCP 层是位于 IP 层之上，应用层之下的中间层。
@@ -378,5 +378,159 @@ java.net 包中提供了两种常见的网络协议的支持：
 	TCP 是一个双向的通信协议，因此数据可以通过两个数据流在同一时间发送.以下是一些类提供的一套完整的有用的方法来实现 socket。
 	java.net.Socket 类代表客户端和服务器都用来互相沟通的套接字。客户端要获取一个 Socket 对象通过实例化 ，而 服务器获得一个 Socket 对象则通过 accept() 方法的返回值。
 	InetAddress 类: 可以理解为表示一台IP终端或者服务器
+//发送邮件 用到扩展包 略
 ```
+
+IP：运行在两台计算机之间
+
+TCP：运行在两个端口之间
+
+HTTP：运行在两个应用之间，是两个应用之间的编码解码通信
+
+```
+由于HTTP是无状态的，服务器不知道这个HTTP来自哪个用户，需要Session来标记跟踪这个用户
+每次HTTP请求的时候，客户端都会发送相应的Cookie信息到服务端。
+实际上大多数的应用都是用 Cookie 来实现Session跟踪的
+
+也就是说服务器为每个用户提供一个Session
+用户给服务器提供一个Cookie，服务器通过这个Cookie来创建一个Session
+第一次创建Session的时候，服务端会在HTTP协议中告诉客户端，需要在 Cookie 里面记录一个Session ID，以后每次请求把这个会话ID发送到服务器，我就知道你是谁了
+```
+
+
+
+```
+//多线程
+操作系统给进程分配内存
+一个进程一直运行，直到所有的非守护线程结束后才能停止运行
+```
+
+![](https://www.runoob.com/wp-content/uploads/2014/01/java-thread.jpg)
+
+
+
+new出来：处于新建状态
+
+执行start()：就绪状态 就绪状态的线程处于就绪队列中，要等待JVM里线程调度器的调度
+
+执行run()：运行状态处于运行状态的线程最为复杂，它可以变为阻塞状态、就绪状态(时间片轮转)和死亡状态
+
+执行wait()：阻塞状态 执行了sleep（睡眠）、suspend（挂起）等方法，失去所占用资源之后，该线程就从运行状态进入阻塞状态
+
+- 等待阻塞：运行状态中的线程执行 wait() 方法，使线程进入到等待阻塞状态。（执行notify()转为就绪状态）
+- 同步阻塞：线程在获取 synchronized 同步锁失败(因为同步锁被其他线程占用)。
+- 其他阻塞：通过调用线程的 sleep() 或 join() 发出了 I/O 请求时，线程就会进入到阻塞状态。当sleep() 状态超时，join() 等待线程终止或超时，或者 I/O 处理完毕，线程重新转入就绪状态。
+
+线程的优先级
+
+Java 线程的优先级是一个整数，其取值范围是 1 （Thread.MIN_PRIORITY ） - 10 （Thread.MAX_PRIORITY ）。
+
+但是，线程优先级不能保证线程执行的顺序，而且非常依赖于平台。
+
+
+
+```
+//创建线程
+Java 提供了三种创建线程的方法：
+
+通过实现 Runnable 接口； 重写run()方法
+通过继承 Thread 类本身； 重写run()方法
+通过 Callable 和 Future 创建线程
+```
+
+- extends Tread类 
+
+- 重写run方法
+
+- 创建子类对象
+
+- 调用start方法
+
+  
+
+- implements Runnable接口 
+
+- 重写实现run方法 
+
+- 创建对象 
+
+- 通过这个对象构造Tread对象 这种方式更容易使得线程之间共享数据
+
+//callable实现新建线程的步骤：方法可以抛出异常 支持泛型的返回值
+
+ * 1.创建一个实现callable的实现类
+ * 2.实现call方法，将此线程需要执行的操作声明在call（）中
+ * 3.创建callable实现类的对象
+ * 4.将callable接口实现类的对象作为传递到FutureTask的构造器中，创建FutureTask的对象
+ * 5.将FutureTask的对象作为参数传递到Thread类的构造器中，创建Thread对象，并调用start方法启动（通过FutureTask的对象调用方法get获取线程中的call的返回值）
+
+
+
+线程池：避免线程频繁创建和销毁
+
+```java
+package com.example.paoduantui.Thread;
+
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+/**
+ * 创建线程的方式四：使用线程池（批量使用线程）
+ *1.需要创建实现runnable或者callable接口方式的对象
+ * 2.创建executorservice线程池
+ * 3.将创建好的实现了runnable接口类的对象放入executorService对象的execute方法中执行。
+ * 4.关闭线程池
+ *
+ * */
+
+class NumberThread implements Runnable{
+
+
+    @Override
+    public void run() {
+        for(int i = 0;i<=100;i++){
+            if (i % 2 ==0 )
+            System.out.println(Thread.currentThread().getName()+":"+i);
+        }
+    }
+}
+
+class NumberThread1 implements Runnable{
+    @Override
+    public void run() {
+        for(int i = 0;i<100; i++){
+            if(i%2==1){
+                System.out.println(Thread.currentThread().getName()+":"+i);
+            }
+        }
+    }
+}
+
+public class ThreadPool {
+
+    public static void main(String[] args){
+
+        //创建固定线程个数为十个的线程池
+        ExecutorService executorService = Executors.newFixedThreadPool(10);
+
+        //new一个Runnable接口的对象
+        NumberThread number = new NumberThread();
+        NumberThread1 number1 = new NumberThread1();
+
+        //执行线程,最多十个
+        executorService.execute(number1);
+        executorService.execute(number);//适合适用于Runnable
+
+        //executorService.submit();//适合使用于Callable
+        //关闭线程池
+        executorService.shutdown();
+    }
+
+}
+```
+
+
+
+生产者消费者问题
 
